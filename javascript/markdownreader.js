@@ -184,7 +184,7 @@
 			'',
 			'小提示：若远程地址跨域受限（CORS），请改用允许跨域的原始文件地址或使用 base64 方式。',
             '',
-            '本服务由 [Mutantcat](https://mutantcat.github.io/) 提供。',
+            '本服务由 [Mutantcat 异猫工作群](https://mutantcat.github.io/) 提供。',
 		].join('\n');
 
 		const html = marked.parse(sampleMd);
