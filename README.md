@@ -1,6 +1,6 @@
 <div align="center">
 <img src="https://s2.loli.net/2025/10/24/6ce9HX4o5kvEJFT.png" style="width:100px;" width="100"/>
-<h2>Mutantcat Markdown Pdf Reader</h2>
+<h2>Mutantcat Web Markdown Reader</h2>
 </div>
 
 ### 一、功能简介
