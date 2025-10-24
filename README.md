@@ -13,7 +13,7 @@
 ### 二、基础用法
 - 部署后，直接使用“地址?url=md文件链接地址”，记得文件服务跨域策略允许此地址，示例如下
     ```
-    https://markdownreader.mutantcat.org/?url=https://github.com/Mutantcat-Working-Group/WebMarkdownReader/blob/main/README.md
+    https://markdownreader.mutantcat.org/?url=(https://raw.githubusercontent.com/Mutantcat-Working-Group/WebMarkdownReader/refs/heads/main/README.md
     ```
 - 部署后，直接使用“地址?base64=markdown原始文本的base64”，示例如下
     ```
