@@ -1,0 +1,36 @@
+<div align="center">
+<img src="https://s2.loli.net/2025/10/24/6ce9HX4o5kvEJFT.png" style="width:100px;" width="100"/>
+<h2>Mutantcat Markdown Pdf Reader</h2>
+</div>
+
+### 一、功能简介
+- 便于网页内嵌（iframe）或者直接预览Markdown文档，样式遵循Github预览样式
+- 支持url指定网络Markdown位置、base64指定Markdown内容、选择本地Markdown文件打开
+- 自适应宽高填满所在页面容器，如果您以iframe引入可以通过Markdown直接控制宽高
+- 此项目为纯前端项目，无需后端服务，可便捷部署，环境要求极低（Pages、Vercel都可以）
+- 预览的文件和文件信息完全不上传服务器，只在用户端处理，浏览更安全
+
+### 二、基础用法
+- 部署后，直接使用“地址?url=md文件链接地址”，记得文件服务跨域策略允许此地址，示例如下
+    ```
+    https://markdownreader.mutantcat.org/?url=https://xxzl.s3.bitiful.net/README.md
+    ```
+- 部署后，直接使用“地址?base64=markdown原始文本的base64”，示例如下
+    ```
+    https://markdownreader.mutantcat.org/?base64=PGRpdiBhbGlnbj0iY2VudGVyIj4KPGltZyBzcmM9Imh0dHBzOi8vczIubG9saS5uZXQvMjAyNS8xMC8yNC82Y2U5SFg0bzVrdkVKRlQucG5nIiBzdHlsZT0id2lkdGg6MTAwcHg7IiB3aWR0aD0iMTAwIi8+CjxoMj5NdXRhbnRjYXQgTWFya2Rvd24gUGRmIFJlYWRlcjwvaDI+CjwvZGl2PgoKIyMjIOS4gOOAgeWKn+iDveeugOS7iwotIOS+v+S6jue9kemhteWGheW1jO+8iGlmcmFtZe+8ieaIluiAheebtOaOpemihOiniE1hcmtkb3du5paH5qGj77yM5qC35byP6YG15b6qR2l0aHVi6aKE6KeI5qC35byPCi0g5pSv5oyBdXJs5oyH5a6a572R57ucTWFya2Rvd27kvY3nva7jgIFiYXNlNjTmjIflrppNYXJrZG93buWGheWuueOAgemAieaLqeacrOWcsE1hcmtkb3du5paH5Lu25omT5byACi0g6Ieq6YCC5bqU5a696auY5aGr5ruh5omA5Zyo6aG16Z2i5a655Zmo77yM5aaC5p6c5oKo5LulaWZyYW1l5byV5YWl5Y+v5Lul6YCa6L+HTWFya2Rvd27nm7TmjqXmjqfliLblrr3pq5gKLSDmraTpobnnm67kuLrnuq/liY3nq6/pobnnm67vvIzml6DpnIDlkI7nq6/mnI3liqHvvIzlj6/kvr/mjbfpg6jnvbLvvIznjq/looPopoHmsYLmnoHkvY7vvIhQYWdlc+OAgVZlcmNlbOmDveWPr+S7pe+8iQotIOmihOiniOeahOaWh+S7tuWSjOaWh+S7tuS/oeaBr+WujOWFqOS4jeS4iuS8oOacjeWKoeWZqO+8jOWPquWcqOeUqOaIt+err+WkhOeQhu+8jOa1j+iniOabtOWuieWFqAoKIyMjIOS6jOOAgeWfuuehgOeUqOazlQotIOmDqOe9suWQju+8jOebtOaOpeS9v+eUqOKAnOWcsOWdgD91cmw9bWTmlofku7bpk77mjqXlnLDlnYDigJ3vvIzorrDlvpfmlofku7bmnI3liqHot6jln5/nrZbnlaXlhYHorrjmraTlnLDlnYDvvIznpLrkvovlpoLkuIsKICAgIGBgYAogICAgaHR0cHM6Ly9tYXJrZG93bnJlYWRlci5tdXRhbnRjYXQub3JnLz91cmw9CiAgICBgYGAKLSDpg6jnvbLlkI7vvIznm7TmjqXkvb/nlKjigJzlnLDlnYA/YmFzZTY0PW1hcmtkb3du5Y6f5aeL5paH5pys55qEYmFzZTY04oCd77yM6K6w5b6X5paH5Lu25pyN5Yqh6Leo5Z+f562W55Wl5YWB6K645q2k5Zyw5Z2A77yM56S65L6L5aaC5LiLCiAgICBgYGAKICAgIGh0dHBzOi8vbWFya2Rvd25yZWFkZXIubXV0YW50Y2F0Lm9yZy8/YmFzZTY0PQogICAgYGBgCi0g55u05o6l6YCa6L+H6K6/6Zeu55WM6Z2i5oiW6ICF5YaF5bWM6L+baWZyYW1l6YO95Y+v5Lul5q2j5bi46K6/6Zeu77yM5bCx6L+Z5qC3566A5Y2V5Y2z5Y+vCi0g6L+Z5piv5LiA5Liq5YWs55uK6aG555uu77yM5L2g5Y+v5Lul55So5oiR5Lus5o+Q5L6b55qE6L+Z5Lqb57q/5LiK5Zyw5Z2A44CB5Lmf5Y+v5Lul6Ieq5bex6YOo572y44CB6Ieq5bex5L+u5pS55Luj56CBCgojIyMg5LiJ44CB5Zyw5Z2A56S65L6LCi0g5a6Y5pa55YWs55uK5Zyw5Z2ACiAgICAtIGh0dHBzOi8vbWFya2Rvd25yZWFkZXIubXV0YW50Y2F0Lm9yZwogICAgLSBodHRwczovL211dGFudGNhdC13b3JraW5nLWdyb3VwLmdpdGh1Yi5pby9XZWJNYXJrZG93blJlYWRlcgoKIyMjIOWbm+OAgeWFtuS7luivtOaYjgotIOWmgumBh2J1Z+WPr+WPiuaXtuaPkOS6pGlzc3Vl77yM5b2T54S257qv5paH5a2XaXNzdWXmj4/ov7DnjrDosaHkuZ/lj6/ku6UKLSDmrKLov45Gb3Jr6Ieq5bex55qE54mI5pys5a6e546w5LiN5ZCM5qC35byP44CB5oCn6IO944CB55So5rOVCi0g5ZCM5pe25qyi6L+OU3RhcuaIluiAhei0oeeMruacrOmhueebrgoKCgo=
+    ```
+- 直接通过访问界面或者内嵌进iframe都可以正常访问，就这样简单即可
+- 这是一个公益项目，你可以用我们提供的这些线上地址、也可以自己部署、自己修改代码
+
+### 三、地址示例
+- 官方公益地址
+    - https://markdownreader.mutantcat.org
+    - https://mutantcat-working-group.github.io/WebMarkdownReader
+
+### 四、其他说明
+- 如遇bug可及时提交issue，当然纯文字issue描述现象也可以
+- 欢迎Fork自己的版本实现不同样式、性能、用法
+- 同时欢迎Star或者贡献本项目
+
+
+
