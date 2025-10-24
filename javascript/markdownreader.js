@@ -183,6 +183,7 @@
 				'2. Base64 文本：`?base64=...`（UTF-8 编码；如含 `+`/`/`，请进行 URL 编码，或改用 URL-safe `-`/`_`）',
 			'',
 			'小提示：若远程地址跨域受限（CORS），请改用允许跨域的原始文件地址或使用 base64 方式。',
+            '',
             '本服务由 [Mutantcat](https://mutantcat.github.io/) 提供。',
 		].join('\n');
 
