@@ -126,22 +126,42 @@
 		if (base) base.remove();
 	}
 
-	function decodeBase64Utf8(b64) {
-		// 兼容 URL-safe Base64，并自动补齐 padding
-		let s = b64.replace(/[-_]/g, (m) => (m === '-' ? '+' : '/'));
-		const pad = s.length % 4;
-		if (pad) s += '='.repeat(4 - pad);
-		// atob -> bytes -> UTF-8
-		const bin = atob(s);
-		const bytes = new Uint8Array(bin.length);
-		for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
-		try {
-			return new TextDecoder('utf-8', { fatal: false }).decode(bytes);
-		} catch (_) {
-			// 回退方案
-			return decodeURIComponent(escape(bin));
+		function decodeBase64Utf8(b64) {
+			// 规范化：处理 URL 中的 + 被当作空格、URL-safe 字符，以及行内空白与 padding
+			let s = (b64 || '').trim();
+			// 将解析出来的空格还原为 '+'（许多环境会把 + 当作空格）
+			s = s.replace(/ /g, '+');
+			// URL-safe -> 标准 Base64
+			s = s.replace(/-/g, '+').replace(/_/g, '/');
+			// 去除换行和制表符
+			s = s.replace(/[\r\n\t]/g, '');
+			// 自动补齐 padding
+			const pad = s.length % 4;
+			if (pad) s += '='.repeat(4 - pad);
+
+			// atob -> bytes
+			const bin = atob(s);
+			const bytes = new Uint8Array(bin.length);
+			for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+
+			// 优先严格按 UTF-8 解码，失败则尝试常见中文编码，再退回容错方案
+			try {
+				return new TextDecoder('utf-8', { fatal: true }).decode(bytes);
+			} catch (_) {
+				// 部分内容可能是 GBK/GB18030 编码
+				try {
+					// 先尝试 gbk，不行再尝试 gb18030
+					return new TextDecoder('gbk', { fatal: false }).decode(bytes);
+				} catch (__){
+					try {
+						return new TextDecoder('gb18030', { fatal: false }).decode(bytes);
+					} catch (___) {
+						// 最后回退
+						return decodeURIComponent(escape(bin));
+					}
+				}
+			}
 		}
-	}
 
 	function escapeHtml(str) {
 		return String(str)
@@ -154,13 +174,13 @@
 
 	function showWelcome() {
 		clearBaseHref();
-		const sampleMd = [
+			const sampleMd = [
 			'# 欢迎使用 Markdown 预览器',
 			'',
 			'通过以下两种方式打开 Markdown：',
 			'',
-			'1. 远程地址：`?url=https://raw.githubusercontent.com/user/repo/README.md`',
-			'2. Base64 文本：`?base64=...`（UTF-8 编码，支持 URL-safe）',
+				'1. 远程地址：`?url=https://raw.githubusercontent.com/user/repo/README.md`',
+				'2. Base64 文本：`?base64=...`（UTF-8 编码；如含 `+`/`/`，请进行 URL 编码，或改用 URL-safe `-`/`_`）',
 			'',
 			'小提示：若远程地址跨域受限（CORS），请改用允许跨域的原始文件地址或使用 base64 方式。'
 		].join('\n');
