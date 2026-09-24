@@ -1,5 +1,7 @@
 /*
  * Mutantcat Web Markdown Reader
+ * 由异猫工作群（mutantcat.org）发行
+ * GitHub: https://github.com/Mutantcat-Working-Group
  * - 支持通过 ?url=（远程 Markdown 地址）或 ?base64=（Markdown 文本的 Base64 编码）加载
  * - 使用 marked 渲染，并套用 GitHub Markdown 样式
  * - 相对资源链接在 ?url= 模式下可通过 <base> 自动相对解析
@@ -185,6 +187,8 @@
 			'小提示：若远程地址跨域受限（CORS），请改用允许跨域的原始文件地址或使用 base64 方式。',
             '',
             '提供者：本服务由 [异猫工作群](https://www.mutantcat.org/) 提供。',
+            '',
+            '发行方：[Mutantcat Working Group](https://github.com/Mutantcat-Working-Group) · https://github.com/Mutantcat-Working-Group',
 		].join('\n');
 
 		const html = marked.parse(sampleMd);
@@ -220,4 +224,3 @@
 		document.title = `${title} · ${defaultTitle}`;
 	}
 })();
-
